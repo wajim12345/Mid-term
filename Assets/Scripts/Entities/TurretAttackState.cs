@@ -7,7 +7,7 @@ public class TurretAttackState : TurretState
 {
     float distanceToPlayer;
     Health playerHealth;
-    float damagePerSec = 20f;
+    float damagePerSec = 50.0f;
 
     public TurretAttackState(TurretController _turret) : base(_turret)
     {
