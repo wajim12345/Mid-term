@@ -6,14 +6,17 @@ using UnityEngine.Events;
 public class PressurePlate : MonoBehaviour
 {
     [SerializeField] private float checkRadius;
-    [SerializeField] private LayerMask pickupLayer;
+    [SerializeField] private LayerMask detectionLayer;
 
     public UnityEvent OnCubePlaced;
     public UnityEvent OnCubeRemoved;
 
+    public UnityEvent OnRobotEnter;
+    public UnityEvent OnRobotLeave;
+
     private void OnCollisionEnter(Collision collision)
     {
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, checkRadius, pickupLayer);
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, checkRadius, detectionLayer);
         Debug.Log(hitColliders.Length);
 
         foreach (var collider in hitColliders)
@@ -21,6 +24,12 @@ public class PressurePlate : MonoBehaviour
             if(collider.CompareTag("PickCube"))
             {
                 OnCubePlaced?.Invoke();
+                break;
+            }
+            else if(collider.CompareTag("Robot"))
+            {
+                OnRobotEnter?.Invoke();
+                Debug.Log("Robot Enter");
                 break;
             }
         }
@@ -31,6 +40,10 @@ public class PressurePlate : MonoBehaviour
         if(collision.gameObject.CompareTag("PickCube"))
         {
             OnCubeRemoved?.Invoke();   
+        }
+        else if (collision.gameObject.CompareTag("Robot"))
+        {
+            OnRobotLeave?.Invoke();
         }
     }
 }

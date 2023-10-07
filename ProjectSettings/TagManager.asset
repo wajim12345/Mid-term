@@ -7,6 +7,8 @@ TagManager:
   - PickCube
   - Ground
   - Builder
+  - Robot
+  - Bullet
   layers:
   - Default
   - TransparentFX
@@ -21,8 +23,8 @@ TagManager:
   - RocketDestroyable
   - Interact
   - Pickup
-  - 
-  - 
+  - Robot
+  - Wall
   - 
   - 
   - 

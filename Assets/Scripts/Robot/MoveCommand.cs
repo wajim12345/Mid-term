@@ -7,6 +7,8 @@ public class MoveCommand : Command
 {
     private NavMeshAgent agent;
     private Vector3 destination;
+    private float timeout = 5f;
+    private float startTime;
 
     public MoveCommand(NavMeshAgent _agent, Vector3 _destination)
     {
@@ -17,19 +19,18 @@ public class MoveCommand : Command
 
     public override void Execute()
     {
+        startTime = Time.time;
         agent.SetDestination(destination);
     }
 
     bool ReachDestination()
     {
-        if (agent.remainingDistance > 0.1f)
-        {
-            return false;
-        }
-        else
+        if ((agent.remainingDistance < 0.1f) || (Time.time - startTime >= timeout))
         {
             return true;
         }
+
+        return false;
             
     }
 }

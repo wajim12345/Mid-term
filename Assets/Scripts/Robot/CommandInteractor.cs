@@ -24,6 +24,7 @@ public class CommandInteractor : Interactor
                 {
                     GameObject pointer= Instantiate(pointerPrefab);
                     pointer.transform.position = hitInfo.point;
+                    Destroy(pointer, 2f);
 
                     commands.Enqueue(new MoveCommand(agent, hitInfo.point)); 
                 }
@@ -50,5 +51,10 @@ public class CommandInteractor : Interactor
 
         currentCommand = commands.Dequeue();
         currentCommand.Execute();
+    }
+
+    public void ClearCommands()
+    {
+        commands.Clear();
     }
 }

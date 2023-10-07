@@ -21,7 +21,7 @@ public class Door : MonoBehaviour
         if (!isLocked && other.CompareTag("Player"))
         {
             timer = 0;
-            doorRenderer.material = detectedMaterial;
+            /*doorRenderer.material = detectedMaterial;*/
 
         }
     }
@@ -43,7 +43,7 @@ public class Door : MonoBehaviour
         if (timer >= waitTIme)
         {
             timer = waitTIme;
-            doorAnimator.SetBool("DoorControl", true);
+            //doorAnimator.SetBool("DoorControl", true);
 
             OpenDoor(true);
         }
@@ -51,8 +51,8 @@ public class Door : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        doorAnimator.SetBool("DoorControl", false);
-        doorRenderer.material = defaultMaterial;
+        /*doorAnimator.SetBool("DoorControl", false);*/
+        /*doorRenderer.material = defaultMaterial;*/
         OpenDoor(false);
     }
 
